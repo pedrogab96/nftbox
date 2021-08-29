@@ -7,13 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
-  <div class="app">
+  <div class="app" x-data="{ text: 'dsads' }"">
     
-    <p class="fs-3"> Plants vs Undead</p>
+    <p class="fs-3" x-text="text"> Plants vs Undead</p>
     <select  class="form-select" name="group-plants" id="group-plants">
-      <option selected value="group1">Group 1</option>
+      <option value="group1">Group 1</option>
       <option value="group2">Group 2</option>
-      <option value="group3">Group 3</option>
+      <option selected value="group3">Group 3</option>
     </select>
   
     <div class="form-check form-switch mt-2">
@@ -27,7 +27,8 @@
     </div>
 
     <div class="d-flex justify-content-center mt-2">
-      <img src="https://media.discordapp.net/attachments/873999958448160811/881135576382857236/unknown.png" alt="" class='all-groups-img'>
+      <select name="times" multiple>
+      </select>
     </div>
 
 
@@ -50,11 +51,8 @@
       <span class="input-group-text" id="brl-coin">BRL</span>
       <input type="text" class="form-control" placeholder="Real" >
     </div>
-    <button type="button" id="save">Change Content</button>
   </div>
 
-  <script src="popup.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="popup.js"></script>
 </body>
 </html>

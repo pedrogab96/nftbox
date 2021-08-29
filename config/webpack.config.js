@@ -7,6 +7,7 @@ const PATHS = require('./paths');
 
 // Merge webpack configuration files
 const config = merge(common, {
+  devtool: 'cheap-module-source-map',
   entry: {
     popup: PATHS.src + '/popup.js',
     contentScript: PATHS.src + '/contentScript.js',

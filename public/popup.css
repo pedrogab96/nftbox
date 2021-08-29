@@ -19,6 +19,11 @@ body {
     height: 600px;
 }
 
+select[name="times"] {
+    width: 100%;
+    height: 180px;
+}
+
 .app {
     height: 100%;
     display: flex;
