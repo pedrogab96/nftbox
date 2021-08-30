@@ -33,10 +33,6 @@ import moment from 'moment';
 
             console.log(currentHour);
 
-            // if (now.diff(currentHour, 'h') > -2 && now.diff(currentHour, 'h') <= 0) {
-            //     next = ' - próximo';
-            // }
-
             if(currentHour.diff(now, 'h', true) > 0){
                 next = ' - próximo';
             }
