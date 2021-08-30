@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Chrome Extension</title>
+    <link rel="stylesheet" href="popup.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+  <div class="app">
+    
+    <a target="_blank" href="https://marketplace.plantvsundead.com/farm#/farm">
+      <p class="fs-3" x-text="text"> Plants vs Undead</p>
+    </a>
+    <select  class="form-select" name="group-plants" id="group-plants">
+      <option value="group1">Group 1</option>
+      <option value="group2">Group 2</option>
+      <option selected value="group3">Group 3</option>
+    </select>
+  
+    <div class="form-check form-switch mt-2">
+      <input type="checkbox" class="form-check-input" id="alert-group">
+      <label class="form-check-label" for="alert-group">Alert me</label>
+    </div>
+
+    <div class="d-flex justify-content-center mt-2">
+      <select name="times" multiple disabled style="overflow: hidden">
+      </select>
+    </div>
+
+    <div class="input-group mb-1 mt-3">
+      <span class="input-group-text" id="le-coin">LE</span>
+      <input type="text" class="form-control"  id="le-input" placeholder="LE">
+    </div>
+
+    <div class="input-group mb-1">
+      <span class="input-group-text" id="pvu-coin">PVU</span>
+      <input type="number" class="form-control" id="pvu-input" placeholder="PVU" step="any">
+    </div>
+
+    <div class="input-group mb-1">
+      <span class="input-group-text" id="usd-coin">USD</span>
+      <input type="number" class="form-control" id='usd-input' placeholder="Dolar" step="any">
+    </div>
+
+    <div class="input-group mb-1">
+      <span class="input-group-text" id="brl-coin">BRL</span>
+      <input type="number" class="form-control" id='brl-input' placeholder="Real" step="any">
+    </div>
+  </div>
+
+  <script type="text/javascript" src="popup.js"></script>
+</body>
+</html>
