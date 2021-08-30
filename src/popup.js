@@ -32,6 +32,12 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=plant-
         group4: "Grupo 4",
         group5: "Grupo 5",
         group6: "Grupo 6",
+        group7: "Grupo 7",
+        group8: "Grupo 8",
+        group9: "Grupo 9",
+        group10: "Grupo 10",
+        group11: "Grupo 11",
+        group12: "Grupo 12",
     }
 
     function startSelect() {

@@ -20,8 +20,10 @@
     "default_popup": "popup.html"
   },
   "permissions": [
+    "tabs",
     "storage",
-    "alarms"
+    "alarms",
+    "notifications"
   ],
   "content_scripts": [
     {
