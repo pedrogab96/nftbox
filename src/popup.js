@@ -31,7 +31,13 @@ import moment from 'moment';
             let currentHour = moment(time, 'h:mm');
             let newHour = moment(time, 'h:mm').add(30, 'm');
 
-            if (now.diff(currentHour, 'h') > -2 && now.diff(currentHour, 'h') <= 0) {
+            console.log(currentHour);
+
+            // if (now.diff(currentHour, 'h') > -2 && now.diff(currentHour, 'h') <= 0) {
+            //     next = ' - próximo';
+            // }
+
+            if(currentHour.diff(now, 'h', true) > 0){
                 next = ' - próximo';
             }
             
@@ -55,7 +61,7 @@ import moment from 'moment';
 
     chrome.storage.sync.get("group", ({ group }) =>{
         setTimeGroup(group || $('#group-plants').val());
-        console.log($('#group-plants').val(group));
+        $('#group-plants').val(group);
     });
 
     startSelect();
