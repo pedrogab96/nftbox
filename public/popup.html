@@ -12,6 +12,11 @@
     <a target="_blank" href="https://marketplace.plantvsundead.com/farm#/farm">
       <p class="fs-3" x-text="text"> Plants vs Undead</p>
     </a>
+    
+    <a target="_blank" href="#" class="visually-hidden" id="spreadsheet-link">
+      <p class="fs-5" x-text="text">Planilha</p>
+    </a>
+
     <select  class="form-select" name="group-plants" id="group-plants">
       <option value="group1">Group 1</option>
       <option value="group2">Group 2</option>
@@ -29,24 +34,33 @@
     </div>
 
     <div class="input-group mb-1 mt-3">
-      <span class="input-group-text" id="le-coin">LE</span>
+      <span class="input-group-text coin-tag" id="le-coin">LE</span>
       <input type="text" class="form-control"  id="le-input" placeholder="LE">
     </div>
 
     <div class="input-group mb-1">
-      <span class="input-group-text" id="pvu-coin">PVU</span>
+      <span class="input-group-text coin-tag" id="pvu-coin">PVU</span>
       <input type="number" class="form-control" id="pvu-input" placeholder="PVU" step="any">
     </div>
 
     <div class="input-group mb-1">
-      <span class="input-group-text" id="usd-coin">USD</span>
+      <span class="input-group-text coin-tag" id="usd-coin">USD</span>
       <input type="number" class="form-control" id='usd-input' placeholder="Dolar" step="any">
     </div>
 
     <div class="input-group mb-1">
-      <span class="input-group-text" id="brl-coin">BRL</span>
+      <span class="input-group-text coin-tag" id="brl-coin">BRL</span>
       <input type="number" class="form-control" id='brl-input' placeholder="Real" step="any">
     </div>
+
+    <form class="my-3">
+      <input type="text" class="form-control" id="spreadsheet-input" placeholder="Planilha">
+      <div class="d-flex justify-content-end my-2">
+        <a class="btn btn-danger btn-sm me-2" id="spreadsheet-remove">Remove</a>
+        <a class="btn btn-primary btn-sm" id="spreadsheet-add">Adicionar</a>
+      </div>
+    </form>
+
   </div>
 
   <script type="text/javascript" src="popup.js"></script>

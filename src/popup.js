@@ -10,7 +10,6 @@ let usd = 0;
 fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=plant-vs-undead-token')
     .then((resp) => resp.json())
     .then(function(data) {
-        console.log(data[0]);
         $('#pvu-input').val(pvu);
         $('#le-input').val(le);
         $('#brl-input').val(data[0].current_price);
@@ -23,6 +22,29 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=plant-
         $('#usd-input').val(data[0].current_price);
         usd = data[0].current_price;
     });
+
+
+function setSpreadsheetUrl(spreadsheetUrl){
+    $("#spreadsheet-link").removeClass("visually-hidden");
+    $("#spreadsheet-link").attr("href", spreadsheetUrl);
+    chrome.storage.sync.set({ spreadsheetUrl });
+}
+
+function getSpreadsheetUrl(){
+    chrome.storage.sync.get(({ spreadsheetUrl }) =>{
+        console.log(spreadsheetUrl);
+        if(spreadsheetUrl){
+            setSpreadsheetUrl(spreadsheetUrl);
+        }
+    });
+}
+
+function removeSpreadsheetUrl(){
+    chrome.storage.sync.remove("spreadsheetUrl");
+    $("#spreadsheet-link").addClass("visually-hidden");
+    $("#spreadsheet-link").attr("href", "");
+}
+
 
 (function() {
     let translations = {
@@ -59,7 +81,6 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=plant-
             let currentHour = moment(time, 'h:mm');
             let newHour = moment(time, 'h:mm').add(30, 'm');
 
-            console.log(currentHour.diff(now, 'h', true));
             if(currentHour.diff(now, 'h', true) > 0 && currentHour.diff(now, 'h', true) < 3){
                 next = ' - próximo';
             }
@@ -74,6 +95,11 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=plant-
 
         $('select[name=times]').html(options);
     }
+
+    chrome.storage.sync.get("group", ({ group }) =>{
+        setTimeGroup(group || $('#group-plants').val());
+        $('#group-plants').val(group);
+    });
 
     $(document).on('change', '#group-plants', function () {
         let value = $(this).val();
@@ -107,10 +133,14 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=plant-
         $('#brl-input').val(rounded * brl);
     });
 
-    chrome.storage.sync.get("group", ({ group }) =>{
-        setTimeGroup(group || $('#group-plants').val());
-        $('#group-plants').val(group);
+    $('#spreadsheet-add').on('click', function(){
+        setSpreadsheetUrl($('#spreadsheet-input').val());
     });
 
+    $('#spreadsheet-remove').on('click', function(){
+        removeSpreadsheetUrl();
+    });
+
+    getSpreadsheetUrl();
     startSelect();
 })();
