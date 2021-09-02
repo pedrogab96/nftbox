@@ -2,7 +2,7 @@ import $ from 'jquery';
 import groups from './groups';
 import moment from 'moment';
 
-let le = 70;
+let le = 100;
 let pvu = 1;
 let brl = 0;
 let usd = 0;
