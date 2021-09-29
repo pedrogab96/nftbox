@@ -12,45 +12,82 @@
     <a target="_blank" href="https://marketplace.plantvsundead.com/farm#/farm">
       <p class="fs-3" x-text="text"> Plants vs Undead</p>
     </a>
+
+    <a target="_blank" href="https://cryptocars.me/play/#/">
+      <p class="fs-3" x-text="text"> CCAR</p>
+    </a>
+
+    <a target="_blank" href="https://app.overlord.world/">
+      <p class="fs-3" x-text="text"> Overlord</p>
+    </a>
     
     <a target="_blank" href="#" class="visually-hidden" id="spreadsheet-link">
       <p class="fs-5" x-text="text">Planilha</p>
     </a>
 
-    <select  class="form-select" name="group-plants" id="group-plants">
-      <option value="group1">Group 1</option>
-      <option value="group2">Group 2</option>
-      <option selected value="group3">Group 3</option>
-    </select>
-  
-    <div class="form-check form-switch mt-2">
+    <!-- <div class="form-check form-switch mt-2">
       <input type="checkbox" class="form-check-input" id="alert-group">
       <label class="form-check-label" for="alert-group">Alert me</label>
+    </div> -->
+
+    <div class="row mb-1">
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="pvu-coin">PVU</span>
+          <input type="number" class="form-control" id="pvu-input" placeholder="PVU" step="any">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="brl-coin">BRL</span>
+          <input type="number" class="form-control" id='pvu-brl-input' placeholder="Real" step="any">
+        </div>
+      </div>
     </div>
 
-    <div class="d-flex justify-content-center mt-2">
-      <select name="times" multiple disabled style="overflow: hidden">
-      </select>
+    <div class="row mb-1">
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="ccar-coin">CCAR</span>
+          <input type="number" class="form-control" id="ccar-input" placeholder="CCAR" step="any">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="ccar-to-brl">BRL</span>
+          <input type="number" class="form-control" id='ccar-brl-input' placeholder="Real" step="any">
+        </div>
+      </div>
     </div>
 
-    <div class="input-group mb-1 mt-3">
-      <span class="input-group-text coin-tag" id="le-coin">LE</span>
-      <input type="text" class="form-control"  id="le-input" placeholder="LE">
+    <div class="row mb-1">
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="ovl-coin">OVL</span>
+          <input type="number" class="form-control" id="ovl-input" placeholder="OVL" step="any">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="brl-coin">BRL</span>
+          <input type="number" class="form-control" id='ovl-brl-input' placeholder="Real" step="any">
+        </div>
+      </div>
     </div>
 
-    <div class="input-group mb-1">
-      <span class="input-group-text coin-tag" id="pvu-coin">PVU</span>
-      <input type="number" class="form-control" id="pvu-input" placeholder="PVU" step="any">
-    </div>
-
-    <div class="input-group mb-1">
-      <span class="input-group-text coin-tag" id="usd-coin">USD</span>
-      <input type="number" class="form-control" id='usd-input' placeholder="Dolar" step="any">
-    </div>
-
-    <div class="input-group mb-1">
-      <span class="input-group-text coin-tag" id="brl-coin">BRL</span>
-      <input type="number" class="form-control" id='brl-input' placeholder="Real" step="any">
+    <div class="row">
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="lord-coin">LORD</span>
+          <input type="number" class="form-control" id="lord-input" placeholder="LORD" step="any">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="input-group">
+          <span class="input-group-text coin-tag" id="brl-coin">BRL</span>
+          <input type="number" class="form-control" id='lord-brl-input' placeholder="Real" step="any">
+        </div>
+      </div>
     </div>
 
     <form class="my-3">

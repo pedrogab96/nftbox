@@ -2,25 +2,46 @@ import $ from 'jquery';
 import groups from './groups';
 import moment from 'moment';
 
-let le = 100;
 let pvu = 1;
-let brl = 0;
-let usd = 0;
+let ccar = 1;
+let ovl  = 1;
+let lord = 1;
+let pvu_to_brl = 0;
+let ccar_to_brl = 0;
+let ovl_to_brl = 0;
+let lord_to_brl = 0;
+
 
 fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=plant-vs-undead-token')
     .then((resp) => resp.json())
     .then(function(data) {
         $('#pvu-input').val(pvu);
-        $('#le-input').val(le);
-        $('#brl-input').val(data[0].current_price);
-        brl = data[0].current_price; 
+        $('#pvu-brl-input').val(data[0].current_price);
+        pvu_to_brl = data[0].current_price; 
     });
 
-fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=plant-vs-undead-token')
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=cryptocars')
     .then((resp) => resp.json())
     .then(function(data) {
-        $('#usd-input').val(data[0].current_price);
-        usd = data[0].current_price;
+        $('#ccar-input').val(ccar);
+        $('#ccar-brl-input').val(data[0].current_price);
+        ccar_to_brl = data[0].current_price;
+    });
+
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=overload-game')
+    .then((resp) => resp.json())
+    .then(function(data) {
+        $('#ovl-input').val(ovl);
+        $('#ovl-brl-input').val(data[0].current_price.toFixed(5));
+        ovl_to_brl = data[0].current_price;
+    });
+
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=overlord')
+    .then((resp) => resp.json())
+    .then(function(data) {
+        $('#lord-input').val(lord);
+        $('#lord-brl-input').val(data[0].current_price.toFixed(5));
+        lord_to_brl = data[0].current_price;
     });
 
 
@@ -47,90 +68,47 @@ function removeSpreadsheetUrl(){
 
 
 (function() {
-    let translations = {
-        group1: "Grupo 1",
-        group2: "Grupo 2",
-        group3: "Grupo 3",
-        group4: "Grupo 4",
-        group5: "Grupo 5",
-        group6: "Grupo 6",
-        group7: "Grupo 7",
-        group8: "Grupo 8",
-        group9: "Grupo 9",
-        group10: "Grupo 10",
-        group11: "Grupo 11",
-        group12: "Grupo 12",
-    }
-
-    function startSelect() {
-        let options = '';
-
-        Object.keys(groups).forEach(function (item, key) {
-            options += `<option value=${item}>${translations[item]}</option>`;
-        })
-
-        $('#group-plants').html(options);
-    }
-
-    function setTimeGroup(group) {
-        let options = "";
-        groups[group].forEach(function (time) {
-            let now = moment();
-            let selected = '';
-            let next = '';
-            let currentHour = moment(time, 'h:mm');
-            let newHour = moment(time, 'h:mm').add(30, 'm');
-
-            if(currentHour.diff(now, 'h', true) > 0 && currentHour.diff(now, 'h', true) < 3){
-                next = ' - próximo';
-            }
-            
-            if (now.isBetween(currentHour, newHour)) {
-                selected = 'selected';
-                next = '';
-            }
-
-            options += `<option ${selected} value=${time}>${time}${next}</option>`;
-        });
-
-        $('select[name=times]').html(options);
-    }
-
-    chrome.storage.sync.get("group", ({ group }) =>{
-        setTimeGroup(group || $('#group-plants').val());
-        $('#group-plants').val(group);
-    });
-
-    $(document).on('change', '#group-plants', function () {
-        let value = $(this).val();
-        chrome.storage.sync.set({ group: value });
-        setTimeGroup(value);
-    });
-
     $(document).on('change', '#pvu-input', function(){
-        console.log($(this).val() * brl);
-        $('#brl-input').val($(this).val() * brl);
-        $('#usd-input').val($(this).val() * usd);
-        $('#le-input').val($(this).val() * le);
+        let rounded = ($(this).val() * pvu_to_brl).toFixed(2);
+        $('#pvu-brl-input').val(rounded);
     });
 
-    $(document).on('change', '#usd-input', function(){
-        let rounded = ($(this).val() / usd).toFixed(2);
+    $(document).on('change', '#pvu-brl-input', function(){
+        let rounded = ($(this).val() / pvu_to_brl).toFixed(2);
         $('#pvu-input').val(rounded);
-        $('#brl-input').val((rounded * brl).toFixed(2));
     });
 
-    $(document).on('change', '#brl-input', function(){
-        let rounded = ($(this).val() / brl).toFixed(2);
-        $('#pvu-input').val(rounded);
-        $('#usd-input').val((rounded * usd).toFixed(2));
+    //CCAR
+    $(document).on('change', '#ccar-input', function(){
+        let rounded = ($(this).val() * ccar_to_brl).toFixed(2);
+        $('#ccar-brl-input').val(rounded);
     });
 
-    $(document).on('change', '#le-input', function(){
-        let rounded = ($(this).val() / le).toFixed(2);
-        $('#pvu-input').val(rounded);
-        $('#usd-input').val(rounded * usd);
-        $('#brl-input').val(rounded * brl);
+    $(document).on('change', '#ccar-brl-input', function(){
+        let rounded = ($(this).val() / ccar_to_brl).toFixed(2);
+        $('#ccar-input').val(rounded);
+    });
+
+    //OVL
+    $(document).on('change', '#ovl-input', function(){
+        let rounded = ($(this).val() * ovl_to_brl).toFixed(2);
+        $('#ovl-brl-input').val(rounded);
+    });
+
+    $(document).on('change', '#ovl-brl-input', function(){
+        let rounded = ($(this).val() / ovl_to_brl).toFixed(2);
+        $('#ovl-input').val(rounded);
+    });
+
+    //LORD
+    $(document).on('change', '#lord-input', function(){
+        let rounded = ($(this).val() * lord_to_brl).toFixed(2);
+        $('#lord-brl-input').val(rounded);
+    });
+
+    $(document).on('change', '#lord-brl-input', function(){
+        let rounded = ($(this).val() / lord_to_brl).toFixed(2);
+        $('#lord-input').val(rounded);
     });
 
     $('#spreadsheet-add').on('click', function(){
@@ -142,5 +120,4 @@ function removeSpreadsheetUrl(){
     });
 
     getSpreadsheetUrl();
-    startSelect();
 })();
