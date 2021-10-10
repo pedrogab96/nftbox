@@ -111,6 +111,11 @@ function removeSpreadsheetUrl(){
         $('#lord-input').val(rounded);
     });
 
+    $(document).on('change', '#lord-brl-input', function(){
+        let rounded = ($(this).val() / lord_to_brl).toFixed(2);
+        $('#lord-input').val(rounded);
+    });
+
     $('#spreadsheet-add').on('click', function(){
         setSpreadsheetUrl($('#spreadsheet-input').val());
     });

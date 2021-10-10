@@ -5,7 +5,7 @@
 // For more information on background script,
 // See https://developer.chrome.com/extensions/background_pages
 
-let brl;
+let pvu_to_brl;
 let usd;
 
 (function update() {
@@ -26,7 +26,7 @@ function notificationPVU(){
 function notificationCCAR(){
   chrome.notifications.create({
     title: 'CCAR',
-    message: 'Subiu para R$: 1,5',
+    message: 'Subiu para R$: ' . pvu_to_brl,
     iconUrl: 'icons/ccar-icon.jpeg',
     type: 'basic',
   });
@@ -36,10 +36,10 @@ function getTotalCoins(){
   fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=cryptocars')
   .then((resp) => resp.json())
   .then(function(data) {
-      brl = data[0].current_price; 
+      let brl = data[0].current_price; 
       console.log('CCAR: ' + brl + 'R$')
-      if(brl >= 1.50){
-        notificationCCAR();
+      if(brl >= 2.5){
+        // notificationCCAR();
         // audioNotification();
       }
   });
@@ -50,7 +50,7 @@ function getTotalCoins(){
         usd = data[0].current_price;
         console.log('PVU: ' + usd + '$')
         if(usd <= 2){
-          notificationPVU();
+          // notificationPVU();
         }
     });
 }
