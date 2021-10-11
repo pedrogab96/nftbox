@@ -23,14 +23,16 @@ function notificationPVU(){
   });
 }
 
-function notificationCCAR(){
-  chrome.notifications.create({
-    title: 'CCAR',
-    message: 'Subiu para R$: ' . pvu_to_brl,
-    iconUrl: 'icons/ccar-icon.jpeg',
+function notificationCCAR() {
+  chrome.notifications.create('NOTFICATION_ID', {
     type: 'basic',
+    iconUrl: 'icons/ccar-icon.jpeg',
+    title: 'notification title',
+    message: 'notification message',
   });
 }
+
+
 
 function getTotalCoins(){
   fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=cryptocars')
@@ -38,8 +40,8 @@ function getTotalCoins(){
   .then(function(data) {
       let brl = data[0].current_price; 
       console.log('CCAR: ' + brl + 'R$')
-      if(brl >= 2.5){
-        // notificationCCAR();
+      if(brl >= 1.5){
+        notificationCCAR();
         // audioNotification();
       }
   });
@@ -55,9 +57,9 @@ function getTotalCoins(){
     });
 }
 
-// function audioNotification(){
-//   var yourSound = new Audio('songs/saint_roses_remix.mp3');
-//   yourSound.play();
-// }
+function audioNotification(){
+  var yourSound = new Audio('songs/saint_roses_remix.mp3');
+  yourSound.play();
+}
 
 
