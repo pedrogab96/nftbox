@@ -42,7 +42,7 @@ function getTotalCoins(){
       ccar_to_brl = data[0].current_price; 
       console.log('CCAR: ' + ccar_to_brl + 'R$')
       if(ccar_to_brl >= 1.5){
-        notificationCCAR();
+        // notificationCCAR();
         // audioNotification();
       }
   });
