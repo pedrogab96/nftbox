@@ -28,15 +28,7 @@ fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=crypto
         ccar_to_brl = data[0].current_price;
     });
 
-fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=overload-game')
-    .then((resp) => resp.json())
-    .then(function(data) {
-        $('#ovl-input').val(ovl);
-        $('#ovl-brl-input').val(data[0].current_price.toFixed(5));
-        ovl_to_brl = data[0].current_price;
-    });
-
-fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=overlord')
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=eternal')
     .then((resp) => resp.json())
     .then(function(data) {
         $('#lord-input').val(lord);

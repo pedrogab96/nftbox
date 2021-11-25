@@ -8,6 +8,7 @@
 let pvu_to_brl;
 let ccar_to_brl;
 let usd;
+let ariva_to_brl;
 
 (function update() {
   getTotalCoins();
@@ -33,6 +34,15 @@ function notificationCCAR() {
   });
 }
 
+function notificationAriva(title) {
+  chrome.notifications.create({
+    type: 'basic',
+    iconUrl: 'icons/ariva-icon.png',
+    title,
+    message: title + ' ' + ariva_to_brl,
+  });
+}
+
 
 
 function getTotalCoins(){
@@ -43,7 +53,6 @@ function getTotalCoins(){
       console.log('CCAR: ' + ccar_to_brl + 'R$')
       if(ccar_to_brl >= 1.5){
         // notificationCCAR();
-        // audioNotification();
       }
   });
 
@@ -56,6 +65,16 @@ function getTotalCoins(){
           // notificationPVU();
         }
     });
+
+  fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=brl&ids=ariva')
+  .then((resp) => resp.json())
+  .then(function(data) {
+      ariva_to_brl = data[0].current_price;
+      console.log('Ariva: ' + ariva_to_brl + 'R$')
+      if(ariva_to_brl >= 0.0065){
+        notificationAriva('Ariva Subiu');
+      }
+  });
 }
 
 function audioNotification(){
